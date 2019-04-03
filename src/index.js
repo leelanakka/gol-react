@@ -3,4 +3,4 @@ import ReactDOM from "react-dom";
 import Board from "./Board";
 import "./index.css";
 
-ReactDOM.render(<Board size="10"/>, document.getElementById("root"));
+ReactDOM.render(<Board size="10" />, document.getElementById("root"));
