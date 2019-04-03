@@ -97,20 +97,6 @@ class Board extends React.Component {
     this.setState({ board });
   }
 
-  updateLiveCells() {
-    this.setState(state => {
-      state.liveCells = this.nextGeneration(state.liveCells, state.bounds);
-      return state;
-    });
-  }
-
-  getDimension() {
-    return {
-      height: this.size,
-      width: this.size
-    };
-  }
-
   start() {
     this.timerId = setInterval(() => {
       const board = generateNextWorld(this.state.board);
