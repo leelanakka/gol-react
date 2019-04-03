@@ -6,7 +6,7 @@ class Board extends React.Component {
     this.size = +props.size;
     this.state = {
       liveCells: [],
-      bounds: { topLeft: 0, bottomRight: this.size }
+      bounds: { topLeft: 0, bottomRight: this.size + 1 }
     };
   }
 
@@ -38,6 +38,7 @@ class Board extends React.Component {
   updateLiveCells() {
     this.setState(state => {
       state.liveCells = this.nextGeneration(state.liveCells, state.bounds);
+      return state;
     });
   }
 
@@ -52,8 +53,6 @@ class Board extends React.Component {
     let grid = new Array(width).fill(height).map(x => new Array(x).fill(" "));
     return grid;
   }
-
-  
 
   totalAliveNeighbors(cell, grid) {
     let neighbors = this.findingNeighbors([this.size, this.size], cell);
@@ -146,8 +145,6 @@ class Board extends React.Component {
   }
 
   generateWorld(grid, aliveCells) {
-    console.log("grid is "+grid);
-    console.log("alive cells are "+aliveCells)
     for (let aliveCell of aliveCells) {
       grid[aliveCell[0].split("_")[0]][aliveCell[0].split("_")[1]] = "*";
     }
@@ -155,34 +152,26 @@ class Board extends React.Component {
   }
 
   nextGeneration(currGeneration, bounds) {
-    let { topLeft } = this.state.bounds;
-
     let { height, width } = this.getDimension();
     let grid = this.generateWorld(
-      this.initialGrid(width, height),
+      this.initialGrid(width + 1, height + 1),
       currGeneration
     );
     let nextWorld = this.generateNextWorld(grid);
-    return this.getAliveCellsOfNextGeneration(nextWorld, height, width).map(
-      cell => [cell[0] + topLeft[0], cell[1] + topLeft[1]]
-    );
+    return this.getAliveCellsOfNextGeneration(nextWorld, height, width);
   }
 
   start() {
     this.state.liveCells.forEach(coordinate => {
       document.getElementById(coordinate.join("")).style.background = "red";
-      this.updateLiveCells();
     });
+    this.updateLiveCells();
   }
 
   createTable() {
     const row = [];
     for (let index = 0; index <= this.size; index++) {
-      row.push(
-        <tr key={index} onClick={this.makeCellLive.bind(this)}>
-          {this.createRow(index)}{" "}
-        </tr>
-      );
+      row.push(<tr key={index + Math.random()}>{this.createRow(index)}</tr>);
     }
     return row;
   }
