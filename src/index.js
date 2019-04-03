@@ -1,6 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import Board from "./Board";
-import './index.css';
+import "./index.css";
 
-ReactDOM.render(<Board size="10"/>, document.getElementById('root'));
+function App() {
+  return (
+
+      <Board size="10" />
+
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));

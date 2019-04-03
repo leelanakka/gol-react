@@ -16,14 +16,13 @@ tbody {
   margin: auto;
 }
 
-td{
-  border: 1px solid white;
-  background-color: black;
+td {
+  border: 1px solid black;
   text-align: center;
   height: 50px;
   width: 50px;
 
-  color: #ffffff;
+  color: solid black;
   font-size: 10px;
   border-radius: 8%;
 }
