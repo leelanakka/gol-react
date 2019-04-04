@@ -5,6 +5,12 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(
+    209deg,
+    rgba(191, 165, 165, 0.8281687675070029) 14%,
+    rgba(171, 150, 79, 0.4) 56%,
+    rgb(146, 158, 160) 96%
+  );
 }
 
 .alive {

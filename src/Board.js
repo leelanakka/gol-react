@@ -7,7 +7,7 @@ const initialGrid = function(height, width) {
 };
 
 const totalAliveNeighbors = function(cell, grid) {
-  let neighbors = findingNeighbors([11, 11], cell);
+  let neighbors = findingNeighbors([16, 16], cell);
   let isAlive = checkForAlive.bind(null, grid);
   let aliveNeighbor = neighbors.filter(isAlive);
   return aliveNeighbor.length;
@@ -100,7 +100,6 @@ class Board extends React.Component {
   start() {
     this.timerId = setInterval(() => {
       const board = generateNextWorld(this.state.board);
-      console.log(board);
       this.setState({ board });
     }, 1000);
   }
