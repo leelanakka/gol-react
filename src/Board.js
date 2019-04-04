@@ -85,7 +85,6 @@ class Board extends React.Component {
     const board = initialGrid(this.size + 1, this.size + 1);
     this.state = {
       board,
-      bounds: { topLeft: 0, bottomRight: this.size + 1 }
     };
   }
 
@@ -101,7 +100,11 @@ class Board extends React.Component {
     this.timerId = setInterval(() => {
       const board = generateNextWorld(this.state.board);
       this.setState({ board });
-    }, 1000);
+    }, 500);
+  }
+
+  stop() {
+    clearInterval(this.timerId);
   }
 
   generateTable() {
@@ -126,12 +129,15 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
+        <div className="welcomeText"> Welcome To Game Of Life</div>
         <table>
           <tbody>{this.generateTable()}</tbody>
         </table>
-        <button onClick={this.start.bind(this)}>start</button>
-        <button>stop</button>
+        <div className="options">
+          <button onClick={this.start.bind(this)}>start</button>
+          <button onClick={this.stop.bind(this)}>stop</button>
+        </div>
       </div>
     );
   }
